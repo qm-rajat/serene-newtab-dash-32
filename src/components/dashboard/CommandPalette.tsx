@@ -27,6 +27,7 @@ interface CommandPaletteProps {
   onToggleWidget: (widget: string) => void;
   onFocusMode?: () => void;
   onOpenSettings?: () => void;
+  onOpenAI?: () => void;
 }
 
 interface CommandAction {
@@ -44,7 +45,8 @@ export const CommandPalette = ({
   enabledWidgets, 
   onToggleWidget,
   onFocusMode,
-  onOpenSettings
+  onOpenSettings,
+  onOpenAI
 }: CommandPaletteProps) => {
   const [open, setOpen] = useState(false);
 
@@ -186,6 +188,14 @@ export const CommandPalette = ({
       action: () => onFocusMode?.(),
       category: 'Actions',
       keywords: ['focus', 'distraction', 'minimal']
+    },
+    {
+      id: 'open-ai',
+      label: 'Open AI Assistant',
+      icon: Activity,
+      action: () => onOpenAI?.(),
+      category: 'Actions',
+      keywords: ['ai', 'assistant', 'chat', 'help']
     },
 
     // Quick Links

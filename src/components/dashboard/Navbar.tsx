@@ -1,12 +1,13 @@
-import { Sun, Moon, Settings, Sparkles } from 'lucide-react';
+import { Sun, Moon, Settings, Sparkles, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface NavbarProps {
   theme: string;
   onThemeToggle: () => void;
+  onOpenAI?: () => void;
 }
 
-export const Navbar = ({ theme, onThemeToggle }: NavbarProps) => {
+export const Navbar = ({ theme, onThemeToggle, onOpenAI }: NavbarProps) => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-glass-border">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -22,6 +23,16 @@ export const Navbar = ({ theme, onThemeToggle }: NavbarProps) => {
 
         {/* Controls */}
         <div className="flex items-center space-x-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onOpenAI}
+            className="glass-hover text-foreground hover:text-primary"
+            title="AI Assistant"
+          >
+            <Bot className="w-5 h-5" />
+          </Button>
+
           <Button
             variant="ghost"
             size="icon"

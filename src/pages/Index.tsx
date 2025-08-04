@@ -13,6 +13,7 @@ import { MusicPlayerWidget } from '@/components/widgets/MusicPlayerWidget';
 import { MoodTrackerWidget } from '@/components/widgets/MoodTrackerWidget';
 import { SettingsPanel } from '@/components/dashboard/SettingsPanel';
 import { CommandPalette } from '@/components/dashboard/CommandPalette';
+import { AIAssistantSidebar } from '@/components/dashboard/AIAssistantSidebar';
 
 const Index = () => {
   const [backgroundImage, setBackgroundImage] = useState('');
@@ -32,6 +33,8 @@ const Index = () => {
       moodTracker: true,
     };
   });
+
+  const [aiSidebarOpen, setAiSidebarOpen] = useState(false);
 
   // Fetch daily background from Unsplash
   useEffect(() => {
@@ -105,7 +108,11 @@ const Index = () => {
       
       {/* Main Content */}
       <div className="relative z-10 min-h-screen">
-        <Navbar theme={theme} onThemeToggle={() => setTheme(prev => prev === 'dark' ? 'light' : 'dark')} />
+        <Navbar 
+          theme={theme} 
+          onThemeToggle={() => setTheme(prev => prev === 'dark' ? 'light' : 'dark')}
+          onOpenAI={() => setAiSidebarOpen(true)}
+        />
         
         {/* Hero Search Section */}
         <div className="flex flex-col items-center justify-center pt-20 pb-12 px-4">
@@ -193,6 +200,7 @@ const Index = () => {
         onThemeChange={setTheme}
         enabledWidgets={enabledWidgets}
         onToggleWidget={toggleWidget}
+        onOpenAI={() => setAiSidebarOpen(true)}
       />
 
       {/* Settings Panel */}
@@ -201,6 +209,12 @@ const Index = () => {
         onThemeChange={setTheme}
         enabledWidgets={enabledWidgets}
         onToggleWidget={toggleWidget}
+      />
+
+      {/* AI Assistant Sidebar */}
+      <AIAssistantSidebar 
+        isOpen={aiSidebarOpen}
+        onToggle={() => setAiSidebarOpen(!aiSidebarOpen)}
       />
     </div>
   );
