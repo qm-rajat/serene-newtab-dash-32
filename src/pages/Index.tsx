@@ -11,6 +11,7 @@ import { QuickLinksWidget } from '@/components/widgets/QuickLinksWidget';
 import { PomodoroWidget } from '@/components/widgets/PomodoroWidget';
 import { MusicPlayerWidget } from '@/components/widgets/MusicPlayerWidget';
 import { MoodTrackerWidget } from '@/components/widgets/MoodTrackerWidget';
+import { BookmarkWidget } from '@/components/widgets/BookmarkWidget';
 import { SettingsPanel } from '@/components/dashboard/SettingsPanel';
 import { CommandPalette } from '@/components/dashboard/CommandPalette';
 import { AIAssistantSidebar } from '@/components/dashboard/AIAssistantSidebar';
@@ -31,6 +32,7 @@ const Index = () => {
       pomodoro: true,
       musicPlayer: true,
       moodTracker: true,
+      bookmarks: true,
     };
   });
 
@@ -188,6 +190,12 @@ const Index = () => {
             {enabledWidgets.moodTracker && (
               <div className="animate-slide-up" style={{animationDelay: '1.0s'}}>
                 <MoodTrackerWidget />
+              </div>
+            )}
+            
+            {enabledWidgets.bookmarks && (
+              <div className="animate-slide-up md:col-span-2" style={{animationDelay: '1.1s'}}>
+                <BookmarkWidget />
               </div>
             )}
           </div>
